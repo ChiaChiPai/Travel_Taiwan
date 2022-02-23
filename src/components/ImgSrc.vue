@@ -2,15 +2,15 @@
 const props = defineProps({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   type: {
     type: String,
-    default: "png"
+    default: "png",
   },
   alt: {
     type: String,
-    default: ''
+    default: "",
   },
   width: {
     type: Number,
@@ -22,13 +22,15 @@ const props = defineProps({
   },
   classString: {
     type: String,
-    default: ""
-  }
+    default: "",
+  },
 });
 
-const getImageUrl = (size: number) => 
-  new URL(`../assets/images/${size}x/${props.name}.${props.type}`, import.meta.url).href
-
+const getImageUrl = (size: number) =>
+  new URL(
+    `../assets/images/${size}x/${props.name}@${size}x.${props.type}`,
+    import.meta.url
+  ).href;
 </script>
 
 <template>
@@ -39,5 +41,5 @@ const getImageUrl = (size: number) =>
     :width="width"
     :height="height"
     :class="classString"
-  >
+  />
 </template>

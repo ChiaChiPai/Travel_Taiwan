@@ -4,6 +4,8 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AccommodationBanner: typeof import('./src/components/AccommodationBanner.vue')['default']
+    AccommodationMenu: typeof import('./src/components/AccommodationMenu.vue')['default']
     AttractionBanner: typeof import('./src/components/AttractionBanner.vue')['default']
     AttractionIntro: typeof import('./src/components/AttractionIntro.vue')['default']
     CardAvatar: typeof import('./src/components/CardAvatar.vue')['default']

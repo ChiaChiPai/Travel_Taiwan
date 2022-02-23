@@ -1,14 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div
-    class="
-      border-[2px]
-      border-[rgba(0,
-      h-[420px] w-[368px]
-      0, 0.3
-      "
-  >
+  <div class="border-[2px] rounded-30px h-[420px] w-[368px] relative">
     <div
       class="
         bg-white
@@ -20,7 +13,8 @@
         text-14px text-[rgba(0,0,0,0.3)]
         w-125px
         absolute
-        items-center justify-center
+        items-center
+        justify-center
       "
     >
       <img class="mx-4px w-16px" src="@/assets/svg/icon_visitor.svg" alt="" />
@@ -33,7 +27,15 @@
       src="@/assets/images/icon_tag.png"
       alt=""
     />
-    <div class="bg-[#0f0] h-[60.95%] mb-[8px] w-[100%]"></div>
+    <div
+      class="
+        bg-[#0f0]
+        rounded-tr-30px rounded-tl-30px
+        h-[60.95%]
+        mb-[8px]
+        w-[100%]
+      "
+    ></div>
     <div class="px-[15px]">
       <div class="flex items-center">
         <h3 class="mr-[12px] text-[32px] text-[rgba(0,0,0,0.8)] leading-[45px]">

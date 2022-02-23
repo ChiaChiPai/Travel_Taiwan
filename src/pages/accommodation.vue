@@ -111,27 +111,23 @@ const Accommodation = `background-image: url(${AccommodationBanner});`;
       </li>
     </ul>
   </div>
-  <div class="bg-gradient flex h-281px w-full">
-    <div class="h-454px w-375px">
-      <h3>台北</h3>
-      <p>650 間住宿</p>
-    </div>
-    <div class="">
-      <div class="h-221px w-367px">
-        <ImgSrc name="Taipei-view" type="jpg" width="367" height="221"></ImgSrc>
-        <h3>台北</h3>
-        <p>650 間住宿</p>
-      </div>
-      <div class="h-221px w-367px">
-        <h3>台北</h3>
-        <p>650 間住宿</p>
-      </div>
-    </div>
-    <div class="h-454px w-375px">
-      <h3>台北</h3>
-      <p>650 間住宿</p>
-    </div>
+  <div class="bg-gradient flex pt-65px pb-68px justify-center">
+    <AccommodationMenu />
   </div>
+  <GlobalSubtitle
+    :title="`住宿推薦`"
+    :is-show-more="false"
+    class="bg-[#C2BB96]"
+  />
+  <div class="flex flex-wrap mx-auto pt-79px w-1280px recommend justify-evenly">
+    <CardText />
+    <CardText />
+    <CardText />
+    <CardText />
+    <CardText />
+    <CardText />
+  </div>
+  <PaginationGroup class="mb-28px justify-center" />
 </template>
 
 <style lang="postcss" scoped>
@@ -147,5 +143,19 @@ const Accommodation = `background-image: url(${AccommodationBanner});`;
 
 .bg-gradient {
   background: linear-gradient(180deg, #e6ddb2 0%, rgba(230, 221, 178, 0) 100%);
+}
+
+.banner {
+  @apply top-2 left-5 absolute;
+  h3 {
+    @apply font-700 text-[#fff] text-5xl leading-72px;
+  }
+  p {
+    @apply font-400 text-[#fff] text-2xl leading-40px;
+  }
+}
+
+.recommend > div {
+  @apply mb-38px;
 }
 </style>
