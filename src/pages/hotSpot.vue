@@ -54,16 +54,6 @@
       <div class="bg-gray-200 rounded-20px h-408px w-476px"></div>
     </div>
   </div>
-  <GlobalSubtitle
-    class="bg-[#6E9292] mb-41px"
-    :title="`網紅這樣玩`"
-    :is-show-more="false"
-  />
-  <div class="flex pt-[79px] pb-[90px] justify-center">
-    <CardAvatar />
-    <CardAvatar class="mx-[35px]" />
-    <CardAvatar />
-  </div>
 </template>
 
 <style lang="postcss" scoped>

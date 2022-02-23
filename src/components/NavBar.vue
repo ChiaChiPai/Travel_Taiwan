@@ -17,18 +17,17 @@
         class="
           flex
           font-tc font-bold
+          mr-3
           text-[rgba(0,0,0,0.5)]
           navbar
           items-center
         "
       >
-        <li>活動新訊</li>
-        <li>景點</li>
-        <li>美食</li>
-        <li>住宿</li>
-        <li>交通</li>
+        <li><router-link :to="{ name: 'index' }">首頁</router-link></li>
+        <li><router-link :to="{ name: 'attractions' }">景點</router-link></li>
+        <li><router-link :to="{ name: 'delicacy' }">美食</router-link></li>
+        <li><router-link :to="{ name: 'accommodation' }">住宿</router-link></li>
       </ul>
-      <img class="mr-11px ml-2px" src="@/assets/svg/icon_search.svg" alt="" />
       <img src="@/assets/svg/icon_member.svg" alt="" />
     </div>
   </nav>
