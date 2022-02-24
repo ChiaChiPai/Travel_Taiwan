@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import type { AxiosResponse } from "axios";
+import type { ScenicSpot, Hotel, Restaurant } from "../@types/apiResponse";
+
 import indexBanner from "../assets/images/bg_index.png";
 import cardFood from "../assets/images/card_food.png";
 import cardInspect from "../assets/images/card_inspect.png";
 import cardAccommodation from "../assets/images/card_accommodation.png";
 import cardTraffic from "../assets/images/card_traffic.png";
+
+import { ref, onBeforeMount, reactive } from "vue";
+import { $api } from "../service/api";
+import { select } from "../util/selectApiKey";
 
 const indexBannerImg = `background-image: url(${indexBanner});`;
 const cardMenu = [
@@ -26,11 +32,40 @@ const cardMenu = [
   },
 ];
 
-const vw = (px) => {
-  return (px / 1280) * 100 + "vw";
-};
+let tourismData = ref({});
 
-const count = ref(0);
+onBeforeMount(async () => {
+  const scenic = $api.scenic.fetch({
+    params: {
+      $skip: Math.floor(Math.random() * 500),
+      $top: 3,
+      $select: select.scenic,
+    },
+  });
+  const hotel = $api.hotel.fetch({
+    params: {
+      $skip: Math.floor(Math.random() * 500),
+      $top: 3,
+      $select: select.hotel,
+    },
+  });
+  const restaurant = $api.restaurant.fetch({
+    params: {
+      $skip: Math.floor(Math.random() * 500),
+      $top: 3,
+      $select: select.restaurant,
+    },
+  });
+
+  const [{ data: scenicData }, { data: hotelData }, { data: restaurantData }] =
+    (await Promise.all([scenic, hotel, restaurant])) as [
+      AxiosResponse<ScenicSpot>,
+      AxiosResponse<Hotel>,
+      AxiosResponse<Restaurant>
+    ];
+
+  tourismData.value = [scenicData, hotelData, restaurantData];
+});
 </script>
 
 <template>
