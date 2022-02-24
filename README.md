@@ -60,3 +60,7 @@ npm run lint
 - setup
 
 - windiCSS
+
+- axios
+  - axios 攔截器
+  - 使用 api class 化來管理 api
