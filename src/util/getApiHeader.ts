@@ -11,6 +11,6 @@ export const GetAuthorizationHeader = () => {
   const HMAC = ShaObj.getHMAC('B64');
   const Authorization = 'hmac username=\"' + AppID + '\", algorithm=\"hmac-sha1\", headers=\"x-date\", signature=\"' + HMAC + '\"';
 
-  return { 'Authorization': Authorization, 'X-Date': UTCString /*,'Accept-Encoding': 'gzip'*/}; 
+  return { 'Authorization': Authorization, 'X-Date': UTCString }; 
   //如果要將js運行在伺服器，可額外加入 'Accept-Encoding': 'gzip'，要求壓縮以減少網路傳輸資料量
 }
