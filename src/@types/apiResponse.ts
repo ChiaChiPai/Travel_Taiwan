@@ -3,10 +3,8 @@ export interface commonInfo {
   Phone: string
   OpenTime?: string
   Picture: {
-    PictureDescription1: string
-    PictureDescription2?: string
-    PictureDescription3?: string
-    PictureUrl1?: string
+    PictureDescription1?: string
+    PictureUrl1: string
   }
   Position: {
     GeoHash: string
@@ -20,12 +18,14 @@ export interface ScenicSpot extends commonInfo {
   DescriptionDetail: string
 }
 
-export interface Hotel {
+export interface Hotel  extends commonInfo {
   HotelName: string
   Description: string
+  ServiceInfo?: string
 }
 
-export interface Restaurant {
+export interface Restaurant  extends commonInfo {
   RestaurantName: string
   Description: string
+  City: string
 }

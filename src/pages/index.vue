@@ -25,7 +25,6 @@ const cardMenu = [
     title: '交通'
   }
 ]
-
 let tourismData = ref({
   scenic: {} as ScenicSpot[],
   hotel: {} as Hotel[],
@@ -75,7 +74,8 @@ onBeforeMount(async () => {
     class="w-[100%]"
     :style="`background: url(${getImageUrl(
       'bg_index.png'
-    )}) no-repeat bottom/cover`">
+    )}) no-repeat bottom/cover`"
+  >
     <img
       class="
         transform
@@ -87,7 +87,8 @@ onBeforeMount(async () => {
         xl:w-[284px]
       "
       src="../assets/images/icon_taiwan.png"
-      alt="" />
+      alt=""
+    />
     <p
       class="
         text-center
@@ -97,7 +98,8 @@ onBeforeMount(async () => {
         bottom-[15.97vw]
         text-[rgba(0,0,0,0.5)]
         leading-[1.4]
-      ">
+      "
+    >
       台灣許多美景媲美國外，值此五倍券、國旅券及觀光業者加碼優惠盡出之際，旅行台灣就是現在！<br />
       到哪裡旅遊還沒有想法的民眾，歡迎到台灣觀光，體驗「台灣之美」!
     </p>
@@ -108,7 +110,8 @@ onBeforeMount(async () => {
       v-for="card in cardMenu"
       :key="card.title"
       :style="`background: url(${card.img}) no-repeat bottom/cover;`"
-      class="h-[390px] mx-[18.5px] w-[285px] relative">
+      class="h-[390px] mx-[18.5px] w-[285px] relative"
+    >
       <p
         class="
           font-weight font-bold
@@ -118,7 +121,8 @@ onBeforeMount(async () => {
           leading-[43px]
           w-[30px]
           absolute
-        ">
+        "
+      >
         {{ card.title }}
       </p>
     </li>
@@ -129,32 +133,53 @@ onBeforeMount(async () => {
     <CardImage
       v-for="(scenic, idx) in tourismData.scenic"
       :key="idx"
-      class="card-image"
+      class="card card-image"
       :name="scenic.ScenicSpotName"
       :location="scenic.Address"
       :pic="scenic.Picture"
-      :preview="getImageUrl('preview/scenic_preview.jpg')" />
+      :preview="getImageUrl('preview/scenic_preview.jpg')"
+    />
   </div>
 
   <GlobalSubtitle class="bg-[#738677] mt-[90px]" :title="`熱門美食`" />
   <div class="flex pt-[79px] justify-center">
-    <CardText />
-    <CardText class="mx-[35px]" />
-    <CardText />
+    <CardText
+      v-for="(scenic, idx) in tourismData.restaurant"
+      :key="idx"
+      class="card card-restaurant"
+      :name="scenic.RestaurantName"
+      :city="scenic.City"
+      :location="scenic.Address"
+      :pic="scenic.Picture"
+      :phone="scenic.Phone"
+      :service="`營業時間：${scenic.OpenTime}`"
+      :preview="getImageUrl('preview/restaurant_preview.jpg')"
+    />
   </div>
   <GlobalSubtitle class="bg-[#C2BB96] mt-[90px]" :title="`住宿推薦`" />
   <div class="flex pt-[79px] justify-center">
-    <CardText />
-    <CardText class="mx-[35px]" />
-    <CardText />
+    <CardText
+      v-for="(scenic, idx) in tourismData.hotel"
+      :key="idx"
+      class="card card-restaurant"
+      :name="scenic.HotelName"
+      :location="scenic.Address"
+      :pic="scenic.Picture"
+      :phone="scenic.Phone"
+      :service="`服務項目：${scenic.ServiceInfo || ''}`"
+      :preview="getImageUrl('preview/restaurant_preview.jpg')"
+    />
   </div>
 </template>
 
 <style lang="postcss">
+.card {
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.card:nth-child(2) {
+  @apply mx-9;
+}
 .card-image {
   background: url(../assets/images/preview/scenic_preview.jpg);
-}
-.card-image:nth-child(2) {
-  @apply mx-3;
 }
 </style>
