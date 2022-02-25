@@ -64,3 +64,5 @@ npm run lint
 - axios
   - axios 攔截器
   - 使用 api class 化來管理 api
+
+- svg sprite
