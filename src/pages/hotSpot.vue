@@ -21,8 +21,7 @@
             py-4px
             pr-60px
             pl-14px
-          "
-        >
+          ">
           +886-2-81018800
         </dd>
         <dt>開放時間</dt>
@@ -37,21 +36,19 @@
           w-[96.61%]
           recommand
           justify-center
-        "
-      >
+        ">
         <li>周邊推薦</li>
         <li>周邊美食</li>
         <li>周邊住宿</li>
       </ul>
     </div>
-    <div class="bg-[rgba(0,0,0,0.5)] w-2px"></div>
+    <div class="bg-[rgba(0,0,0,0.5)] w-2px" />
     <div class="">
       <h3
-        class="font-700 mb-26px text-32px text-[rgba(0,0,0,0.8)] leading-45px"
-      >
+        class="font-700 mb-26px text-32px text-[rgba(0,0,0,0.8)] leading-45px">
         景點地圖
       </h3>
-      <div class="bg-gray-200 rounded-20px h-408px w-476px"></div>
+      <div class="bg-gray-200 rounded-20px h-408px w-476px" />
     </div>
   </div>
 </template>
@@ -70,7 +67,7 @@
     margin-inline-start: 24px;
   }
   dd + dt::before {
-    content: "";
+    content: '';
     height: 36px;
     display: block;
     mask-repeat: 10px;

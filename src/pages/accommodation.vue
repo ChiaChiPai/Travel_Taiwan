@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import AccommodationBanner from "../assets/images/Accommodation_banner.jpg";
+import AccommodationBanner from '../assets/images/Accommodation_banner.jpg'
 
-const Accommodation = `background-image: url(${AccommodationBanner});`;
+const Accommodation = `background-image: url(${AccommodationBanner});`
 </script>
 
 <template>
   <div
     class="bg-cover bg-no-repeat bg-bottom h-700px w-[100%] relative"
-    :style="Accommodation"
-  >
+    :style="Accommodation">
     <img
       class="
         transform
@@ -20,8 +19,7 @@ const Accommodation = `background-image: url(${AccommodationBanner});`;
         xl:w-[568px]
       "
       src="../assets/images/Accommodation_banner_icon.png"
-      alt=""
-    />
+      alt="" />
     <ul
       class="
         flex
@@ -32,8 +30,7 @@ const Accommodation = `background-image: url(${AccommodationBanner});`;
         -translate-x-1/2
         search
         absolute
-      "
-    >
+      ">
       <li class="">
         <label ref="input" class="search_title">目的地</label>
         <input
@@ -47,8 +44,7 @@ const Accommodation = `background-image: url(${AccommodationBanner});`;
             w-351px
           "
           type="search"
-          placeholder="你要去哪裡？"
-        />
+          placeholder="你要去哪裡？" />
       </li>
       <li class="">
         <div class="search_title">入住-退房</div>
@@ -64,13 +60,11 @@ const Accommodation = `background-image: url(${AccommodationBanner});`;
             text-[rgba(0,0,0,0.5)]
             leading-23px
             w-159px
-          "
-        >
+          ">
           <img
             src="@/assets/svg/icon_calendar.svg"
             class="mr-12px inline-block"
-            alt=""
-          />
+            alt="" />
           <p class="leading-20px inline-block">2021/10/6~10/9</p>
         </div>
       </li>
@@ -89,8 +83,7 @@ const Accommodation = `background-image: url(${AccommodationBanner});`;
             text-[rgba(0,0,0,0.5)]
             leading-23px
             w-254px
-          "
-        >
+          ">
           ２位成人，1間房間
         </div>
       </li>
@@ -104,9 +97,8 @@ const Accommodation = `background-image: url(${AccommodationBanner});`;
           justify-center
           items-center
           self-end
-        "
-      >
-        <SvgIcon name="magnifier" class="h-18px mr-10px w-18px"></SvgIcon>
+        ">
+        <SvgIcon name="magnifier" class="h-18px mr-10px w-18px" />
         <span class="font-bold text-xl text-[rgba(0,0,0,0.5)]">搜尋</span>
       </li>
     </ul>
@@ -117,8 +109,7 @@ const Accommodation = `background-image: url(${AccommodationBanner});`;
   <GlobalSubtitle
     :title="`住宿推薦`"
     :is-show-more="false"
-    class="bg-[#C2BB96]"
-  />
+    class="bg-[#C2BB96]" />
   <div class="flex flex-wrap mx-auto pt-79px w-1280px recommend justify-evenly">
     <CardText />
     <CardText />

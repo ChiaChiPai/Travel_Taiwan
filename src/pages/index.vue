@@ -1,73 +1,73 @@
 <script setup lang="ts">
-import type { AxiosResponse } from "axios";
-import type { ScenicSpot, Hotel, Restaurant } from "../@types/apiResponse";
+import type { AxiosResponse } from 'axios'
+import type { ScenicSpot, Hotel, Restaurant } from '../@types/apiResponse'
 
-import { ref, onBeforeMount, reactive } from "vue";
-import { $api } from "../service/api";
-import { select } from "../util/selectApiKey";
-import { getImageUrl } from "../util/common";
+import { ref, onBeforeMount } from 'vue'
+import { $api } from '../service/api'
+import { select } from '../util/selectApiKey'
+import { getImageUrl } from '../util/common'
 
 const cardMenu = [
   {
-    img: getImageUrl("card_inspect.png"),
-    title: "景點",
+    img: getImageUrl('card_inspect.png'),
+    title: '景點'
   },
   {
-    img: getImageUrl("card_food.png"),
-    title: "美食",
+    img: getImageUrl('card_food.png'),
+    title: '美食'
   },
   {
-    img: getImageUrl("card_accommodation.png"),
-    title: "住宿",
+    img: getImageUrl('card_accommodation.png'),
+    title: '住宿'
   },
   {
-    img: getImageUrl("card_traffic.png"),
-    title: "交通",
-  },
-];
+    img: getImageUrl('card_traffic.png'),
+    title: '交通'
+  }
+]
 
 let tourismData = ref({
   scenic: {} as ScenicSpot[],
   hotel: {} as Hotel[],
-  restaurant: {} as Restaurant[],
-});
+  restaurant: {} as Restaurant[]
+})
 
 onBeforeMount(async () => {
   const scenicPromise = $api.scenic.fetch({
     params: {
       $skip: Math.floor(Math.random() * 500),
       $top: 3,
-      $select: select.scenic,
-    },
-  });
+      $select: select.scenic
+    }
+  })
   const hotelPromise = $api.hotel.fetch({
     params: {
       $skip: Math.floor(Math.random() * 500),
       $top: 3,
-      $select: select.hotel,
-    },
-  });
+      $select: select.hotel
+    }
+  })
   const restaurantPromise = $api.restaurant.fetch({
     params: {
       $skip: Math.floor(Math.random() * 500),
       $top: 3,
-      $select: select.restaurant,
-    },
-  });
+      $select: select.restaurant
+    }
+  })
 
   const [{ data: scenic }, { data: hotel }, { data: restaurant }] =
     (await Promise.all([scenicPromise, hotelPromise, restaurantPromise])) as [
       AxiosResponse<ScenicSpot[]>,
       AxiosResponse<Hotel[]>,
       AxiosResponse<Restaurant[]>
-    ];
+    ]
 
   tourismData.value = {
     scenic,
     hotel,
-    restaurant,
-  };
-});
+    restaurant
+  }
+})
 </script>
 
 <template>
@@ -75,8 +75,7 @@ onBeforeMount(async () => {
     class="w-[100%]"
     :style="`background: url(${getImageUrl(
       'bg_index.png'
-    )}) no-repeat bottom/cover`"
-  >
+    )}) no-repeat bottom/cover`">
     <img
       class="
         transform
@@ -88,8 +87,7 @@ onBeforeMount(async () => {
         xl:w-[284px]
       "
       src="../assets/images/icon_taiwan.png"
-      alt=""
-    />
+      alt="" />
     <p
       class="
         text-center
@@ -99,8 +97,7 @@ onBeforeMount(async () => {
         bottom-[15.97vw]
         text-[rgba(0,0,0,0.5)]
         leading-[1.4]
-      "
-    >
+      ">
       台灣許多美景媲美國外，值此五倍券、國旅券及觀光業者加碼優惠盡出之際，旅行台灣就是現在！<br />
       到哪裡旅遊還沒有想法的民眾，歡迎到台灣觀光，體驗「台灣之美」!
     </p>
@@ -111,8 +108,7 @@ onBeforeMount(async () => {
       v-for="card in cardMenu"
       :key="card.title"
       :style="`background: url(${card.img}) no-repeat bottom/cover;`"
-      class="h-[390px] mx-[18.5px] w-[285px] relative"
-    >
+      class="h-[390px] mx-[18.5px] w-[285px] relative">
       <p
         class="
           font-weight font-bold
@@ -122,8 +118,7 @@ onBeforeMount(async () => {
           leading-[43px]
           w-[30px]
           absolute
-        "
-      >
+        ">
         {{ card.title }}
       </p>
     </li>
@@ -133,13 +128,12 @@ onBeforeMount(async () => {
   <div class="flex pt-[79px] justify-center">
     <CardImage
       v-for="(scenic, idx) in tourismData.scenic"
-      class="card-image"
       :key="idx"
+      class="card-image"
       :name="scenic.ScenicSpotName"
       :location="scenic.Address"
       :pic="scenic.Picture"
-      :preview="getImageUrl('preview/scenic_preview.jpg')"
-    />
+      :preview="getImageUrl('preview/scenic_preview.jpg')" />
   </div>
 
   <GlobalSubtitle class="bg-[#738677] mt-[90px]" :title="`熱門美食`" />

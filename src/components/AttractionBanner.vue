@@ -1,14 +1,13 @@
 <script lang="ts" setup>
-import attractionBanner from "../assets/images/attraction_banner.jpg";
+import attractionBanner from '../assets/images/attraction_banner.jpg'
 
-const attraction = `background-image: url(${attractionBanner});`;
+const attraction = `background-image: url(${attractionBanner});`
 </script>
 
 <template>
   <div
     class="bg-cover bg-no-repeat bg-bottom h-700px w-[100%] relative"
-    :style="attraction"
-  >
+    :style="attraction">
     <img
       class="
         transform
@@ -20,11 +19,9 @@ const attraction = `background-image: url(${attractionBanner});`;
         xl:w-[568px]
       "
       src="../assets/images/atrraction_banner_icon.png"
-      alt=""
-    />
+      alt="" />
     <div
-      class="flex transform bottom-[22%] left-[50%] -translate-x-1/2 absolute"
-    >
+      class="flex transform bottom-[22%] left-[50%] -translate-x-1/2 absolute">
       <label ref="input" class="mr-14px search-bar relative">
         <input
           class="
@@ -37,8 +34,7 @@ const attraction = `background-image: url(${attractionBanner});`;
             w-529px
           "
           type="search"
-          placeholder="請輸入關鍵字"
-        />
+          placeholder="請輸入關鍵字" />
       </label>
       <img src="@/assets/images/btn_search.png" alt="" />
     </div>
@@ -55,7 +51,7 @@ const attraction = `background-image: url(${attractionBanner});`;
 }
 
 .search-bar::after {
-  content: "";
+  content: '';
   background: url(@/assets/svg/icon_search.svg) no-repeat;
   @apply bg-cover h-22px top-15px right-13px w-22px absolute;
 }

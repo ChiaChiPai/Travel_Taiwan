@@ -1,4 +1,29 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineProps } from 'vue'
+import type { commonInfo } from '../@types/apiResponse'
+
+interface Props {
+  isShowOption?: boolean
+  name: string
+  location: string
+  pic: commonInfo['Picture']
+  preview: string
+  phone: string
+  openTime: string
+}
+
+withDefaults(defineProps<Props>(), {
+  isShowOption: () => true,
+  name: '',
+  location: '',
+  pic: () => ({
+    PictureDescription1: ''
+  }),
+  preview: '',
+  phone: '',
+  openTime: ''
+})
+</script>
 
 <template>
   <div class="border-[2px] rounded-30px h-[420px] w-[368px] relative">
@@ -15,8 +40,7 @@
         absolute
         items-center
         justify-center
-      "
-    >
+      ">
       <img class="mx-4px w-16px" src="@/assets/svg/icon_visitor.svg" alt="" />
       <div>4.2</div>
       <img class="mx-4px w-24px" src="@/assets/svg/icon_eye.svg" alt="" />
@@ -25,8 +49,7 @@
     <img
       class="top-18px right-18px absolute"
       src="@/assets/images/icon_tag.png"
-      alt=""
-    />
+      alt="" />
     <div
       class="
         bg-[#0f0]
@@ -34,8 +57,7 @@
         h-[60.95%]
         mb-[8px]
         w-[100%]
-      "
-    ></div>
+      " />
     <div class="px-[15px]">
       <div class="flex items-center">
         <h3 class="mr-[12px] text-[32px] text-[rgba(0,0,0,0.8)] leading-[45px]">

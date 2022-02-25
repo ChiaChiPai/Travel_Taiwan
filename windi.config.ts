@@ -1032,7 +1032,5 @@ export default defineConfig({
     wordBreak: ["responsive"],
     zIndex: ["responsive", "focus-within", "focus"],
   },
-  plugins: [
-    require('windicss/plugin/line-clamp'),
-  ],
+  plugins: [require("windicss/plugin/line-clamp")],
 });

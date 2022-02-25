@@ -2,14 +2,14 @@
 defineProps({
   title: {
     type: String,
-    default: "",
+    default: ''
   },
 
   isShowMore: {
     type: Boolean,
-    default: true,
-  },
-});
+    default: true
+  }
+})
 </script>
 
 <template>
@@ -23,13 +23,13 @@ defineProps({
         pl-[58px]
         w-[1280px]
         justify-between
-      "
-    >
-      <div class="font-700 text-[48px]">{{ title }}</div>
+      ">
+      <div class="font-700 text-[48px]">
+        {{ title }}
+      </div>
       <div
         v-if="isShowMore"
-        class="border-white rounded-lg border-4 font-400 py-[9px] px-[39px]"
-      >
+        class="border-white rounded-lg border-4 font-400 py-[9px] px-[39px]">
         查看更多
       </div>
     </div>

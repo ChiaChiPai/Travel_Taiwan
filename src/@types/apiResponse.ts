@@ -7,12 +7,12 @@ export interface commonInfo {
     PictureDescription2?: string
     PictureDescription3?: string
     PictureUrl1?: string
-  },
+  }
   Position: {
     GeoHash: string
     PositionLat: number
     PositionLon: number
-  },
+  }
 }
 
 export interface ScenicSpot extends commonInfo {

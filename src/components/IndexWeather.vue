@@ -1,43 +1,43 @@
 <script setup lang="ts">
-  import { Swiper, SwiperSlide } from 'swiper/vue';
-  import 'swiper/css';
-  import "swiper/css/navigation"
-  import SwiperCore, {
-  Navigation
-} from 'swiper';
-SwiperCore.use([Navigation]);
-
-  const swiperOptions = {
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    }
-  }
-
-
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import SwiperCore, { Navigation } from 'swiper'
+SwiperCore.use([Navigation])
 </script>
 
 <template>
   <div class="mx-auto max-w-1060px relative">
-    <swiper :navigation="true" :slidesPerView="8" class="swiper-costom">
+    <swiper :navigation="true" :slides-per-view="8" class="swiper-costom">
       <swiper-slide v-for="item in 10" :key="item">
         <div class="flex flex-col text-lg items-center">
-          <div class="mb-12px ">台北市</div>
-          <img class="mb-[14px] max-w-[5.3125vw]" src="@/assets/images/icon_night-ring.png" alt="">
-          <div class="text-[rgba(0,0,0,0.5)] text-5xl leading-[68px] degree relative" text>24</div>
+          <div class="mb-12px">台北市</div>
+          <img
+            class="mb-[14px] max-w-[5.3125vw]"
+            src="@/assets/images/icon_night-ring.png"
+            alt="" />
+          <div
+            class="
+              text-[rgba(0,0,0,0.5)] text-5xl
+              leading-[68px]
+              degree
+              relative
+            "
+            text>
+            24
+          </div>
         </div>
       </swiper-slide>
     </swiper>
   </div>
 </template>
 
-
 <style lang="postcss">
 .swiper {
   position: static;
 }
 
-.degree::after{
+.degree::after {
   content: '';
   background: url(@/assets/images/icon_degree.png);
   width: 18px;

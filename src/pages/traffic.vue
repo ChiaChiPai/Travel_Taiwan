@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import delicacyBanner from "../assets/images/delicacy_banner.jpg";
+import delicacyBanner from '../assets/images/delicacy_banner.jpg'
 
-const delicacy = `background-image: url(${delicacyBanner});`;
+const delicacy = `background-image: url(${delicacyBanner});`
 </script>
 
 <template>
   <div
     class="bg-cover bg-no-repeat bg-bottom h-700px w-[100%] relative"
-    :style="delicacy"
-  >
+    :style="delicacy">
     <img
       class="
         transform
@@ -20,11 +19,9 @@ const delicacy = `background-image: url(${delicacyBanner});`;
         xl:w-[568px]
       "
       src="../assets/images/delicacy_banner_icon.png"
-      alt=""
-    />
+      alt="" />
     <div
-      class="flex transform bottom-[22%] left-[50%] -translate-x-1/2 absolute"
-    >
+      class="flex transform bottom-[22%] left-[50%] -translate-x-1/2 absolute">
       <label ref="input" class="mr-14px search-bar relative">
         <input
           class="
@@ -37,8 +34,7 @@ const delicacy = `background-image: url(${delicacyBanner});`;
             w-529px
           "
           type="search"
-          placeholder="請輸入關鍵字"
-        />
+          placeholder="請輸入關鍵字" />
       </label>
     </div>
   </div>

@@ -1,37 +1,35 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
-import type { commonInfo } from "../@types/apiResponse";
+import { defineProps } from 'vue'
+import type { commonInfo } from '../@types/apiResponse'
 
 interface Props {
-  isShowOption?: Boolean;
-  name: string;
-  location: string;
-  pic: commonInfo["Picture"];
-  preview: string;
+  isShowOption?: boolean
+  name: string
+  location: string
+  pic: commonInfo['Picture']
+  preview: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   isShowOption: () => true,
-  name: "",
-  location: "",
+  name: '',
+  location: '',
   pic: () => ({
-    PictureDescription1: "",
+    PictureDescription1: ''
   }),
-  preview: "",
-});
+  preview: ''
+})
 </script>
 
 <template>
   <div
-    class="bg-cover rounded-30px h-[420px] w-[368px] overflow-hidden relative"
-  >
+    class="bg-cover rounded-30px h-[420px] w-[368px] overflow-hidden relative">
     <img
       :src="pic.PictureUrl1 || preview"
       class="object-cover object-center h-[420px] w-[368px]"
       :alt="pic.PictureDescription1 || name"
       width="368"
-      height="420"
-    />
+      height="420" />
     <div v-if="isShowOption">
       <div
         class="
@@ -46,8 +44,7 @@ const props = withDefaults(defineProps<Props>(), {
           absolute
           items-center
           justify-center
-        "
-      >
+        ">
         <img class="mx-4px w-16px" src="@/assets/svg/icon_visitor.svg" alt="" />
         <div>4.2</div>
         <img class="mx-4px w-24px" src="@/assets/svg/icon_eye.svg" alt="" />
@@ -56,8 +53,7 @@ const props = withDefaults(defineProps<Props>(), {
       <img
         class="top-18px right-18px absolute"
         src="@/assets/images/icon_tag.png"
-        alt=""
-      />
+        alt="" />
     </div>
     <div class="h-[100%] pt-354px bottom-0 w-[100%] absolute">
       <div
@@ -70,19 +66,16 @@ const props = withDefaults(defineProps<Props>(), {
           px-12px
           justify-between
           items-center
-        "
-      >
+        ">
         <div
-          class="flex-1 text-shadow-sm text-36px leading-[39.2px] line-clamp-1"
-        >
+          class="flex-1 text-shadow-sm text-36px leading-[39.2px] line-clamp-1">
           {{ name }}
         </div>
         <div v-if="isShowOption" class="flex item-center">
           <img
             class="mr-[4px]"
             src="@/assets/svg/icon_location-white.svg"
-            alt=""
-          />
+            alt="" />
           <span
             class="
               text-base text-16px

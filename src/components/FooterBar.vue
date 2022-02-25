@@ -1,32 +1,32 @@
 <script setup lang="ts">
 const navList = [
   {
-    title: "活動新訊",
-    content: ["最新消息", "活動異動", "熱門話題"],
+    title: '活動新訊',
+    content: ['最新消息', '活動異動', '熱門話題']
   },
   {
-    title: "景點",
-    content: ["熱門景點", "網紅攻略", "主題景點"],
+    title: '景點',
+    content: ['熱門景點', '網紅攻略', '主題景點']
   },
   {
-    title: "美食",
+    title: '美食',
     content: [
-      "台灣文化",
-      "台灣小吃",
-      "台灣在地特色",
-      "熱門美食",
-      "網紅必推美食",
-    ],
+      '台灣文化',
+      '台灣小吃',
+      '台灣在地特色',
+      '熱門美食',
+      '網紅必推美食'
+    ]
   },
   {
-    title: "住宿",
-    content: ["觀光旅館", "旅館", "民宿", "住宿推薦"],
+    title: '住宿',
+    content: ['觀光旅館', '旅館', '民宿', '住宿推薦']
   },
   {
-    title: "交通",
-    content: ["陸運資訊 ", "高速公路", "交通租賃"],
-  },
-];
+    title: '交通',
+    content: ['陸運資訊 ', '高速公路', '交通租賃']
+  }
+]
 </script>
 
 <template>
@@ -35,7 +35,9 @@ const navList = [
       <h3 class="font-700 mb-18px text-28px leading-39px">
         {{ nav.title }}
       </h3>
-      <li v-for="content in nav.content" :key="content">{{ content }}</li>
+      <li v-for="content in nav.content" :key="content">
+        {{ content }}
+      </li>
     </ul>
   </div>
   <div class="flex bg-[#6E9292] pt-18px pb-13px pl-28px">

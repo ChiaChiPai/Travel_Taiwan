@@ -1,31 +1,30 @@
 <script setup lang="ts">
-import delicacyBanner from "../assets/images/delicacy_banner.jpg";
-import intro_img1 from "../assets/images/img_delicacy1.png";
-import intro_img2 from "../assets/images/img_delicacy2.png";
-import intro_img3 from "../assets/images/img_delicacy3.png";
+import delicacyBanner from '../assets/images/delicacy_banner.jpg'
+import intro_img1 from '../assets/images/img_delicacy1.png'
+import intro_img2 from '../assets/images/img_delicacy2.png'
+import intro_img3 from '../assets/images/img_delicacy3.png'
 
-const delicacy = `background-image: url(${delicacyBanner});`;
+const delicacy = `background-image: url(${delicacyBanner});`
 
 const introList = [
   {
-    title: "台灣文化",
-    img: intro_img1,
+    title: '台灣文化',
+    img: intro_img1
   },
   {
-    title: "台灣小吃",
-    img: intro_img2,
+    title: '台灣小吃',
+    img: intro_img2
   },
   {
-    title: "台灣各地特色",
-    img: intro_img3,
-  },
-];
+    title: '台灣各地特色',
+    img: intro_img3
+  }
+]
 </script>
 <template>
   <div
     class="bg-cover bg-no-repeat bg-bottom h-700px w-[100%] relative"
-    :style="delicacy"
-  >
+    :style="delicacy">
     <img
       class="
         transform
@@ -37,11 +36,9 @@ const introList = [
         xl:w-[568px]
       "
       src="../assets/images/delicacy_banner_icon.png"
-      alt=""
-    />
+      alt="" />
     <div
-      class="flex transform bottom-[22%] left-[50%] -translate-x-1/2 absolute"
-    >
+      class="flex transform bottom-[22%] left-[50%] -translate-x-1/2 absolute">
       <label ref="input" class="mr-14px search-bar relative">
         <input
           class="
@@ -54,8 +51,7 @@ const introList = [
             w-529px
           "
           type="search"
-          placeholder="請輸入關鍵字"
-        />
+          placeholder="請輸入關鍵字" />
       </label>
     </div>
   </div>
@@ -65,13 +61,12 @@ const introList = [
         v-for="(intro, idx) in introList"
         :key="idx"
         :style="`background-image: url(${intro.img});`"
-        class="flex flex-col h-215px w-326px"
-      >
-        <div class="flex-grow"></div>
+        class="flex flex-col h-215px w-326px">
+        <div class="flex-grow" />
         <h3
           :class="{
             'rounded-bl-20px': idx === 0,
-            'rounded-br-20px': idx === 2,
+            'rounded-br-20px': idx === 2
           }"
           class="
             bg-[rgba(255,255,255,0.28)]
@@ -79,8 +74,7 @@ const introList = [
             h-52px
             text-center text-white text-28px
             leading-52px leading-40px
-          "
-        >
+          ">
           {{ intro.title }}
         </h3>
       </div>
@@ -89,8 +83,7 @@ const introList = [
   <GlobalSubtitle
     :title="`熱門美食`"
     :is-show-more="false"
-    class="bg-[#738677]"
-  />
+    class="bg-[#738677]" />
   <div class="flex flex-wrap mx-auto pt-79px w-1280px justify-evenly">
     <CardImage class="mb-38px" />
     <CardImage class="mb-38px" />
@@ -109,7 +102,7 @@ const introList = [
 }
 
 .search-bar::after {
-  content: "";
+  content: '';
   background: url(@/assets/svg/icon_search.svg) no-repeat;
   @apply bg-cover h-22px top-15px right-13px w-22px absolute;
 }
