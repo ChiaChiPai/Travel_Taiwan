@@ -11,6 +11,7 @@ import cardTraffic from "../assets/images/card_traffic.png";
 import { ref, onBeforeMount, reactive } from "vue";
 import { $api } from "../service/api";
 import { select } from "../util/selectApiKey";
+import { getImageUrl } from "../util/common";
 
 const indexBannerImg = `background-image: url(${indexBanner});`;
 const cardMenu = [
@@ -32,24 +33,28 @@ const cardMenu = [
   },
 ];
 
-let tourismData = ref({});
+let tourismData = ref({
+  scenic: {} as ScenicSpot[],
+  hotel: {} as Hotel[],
+  restaurant: {} as Restaurant[],
+});
 
 onBeforeMount(async () => {
-  const scenic = $api.scenic.fetch({
+  const scenicPromise = $api.scenic.fetch({
     params: {
       $skip: Math.floor(Math.random() * 500),
       $top: 3,
       $select: select.scenic,
     },
   });
-  const hotel = $api.hotel.fetch({
+  const hotelPromise = $api.hotel.fetch({
     params: {
       $skip: Math.floor(Math.random() * 500),
       $top: 3,
       $select: select.hotel,
     },
   });
-  const restaurant = $api.restaurant.fetch({
+  const restaurantPromise = $api.restaurant.fetch({
     params: {
       $skip: Math.floor(Math.random() * 500),
       $top: 3,
@@ -57,14 +62,18 @@ onBeforeMount(async () => {
     },
   });
 
-  const [{ data: scenicData }, { data: hotelData }, { data: restaurantData }] =
-    (await Promise.all([scenic, hotel, restaurant])) as [
-      AxiosResponse<ScenicSpot>,
-      AxiosResponse<Hotel>,
-      AxiosResponse<Restaurant>
+  const [{ data: scenic }, { data: hotel }, { data: restaurant }] =
+    (await Promise.all([scenicPromise, hotelPromise, restaurantPromise])) as [
+      AxiosResponse<ScenicSpot[]>,
+      AxiosResponse<Hotel[]>,
+      AxiosResponse<Restaurant[]>
     ];
 
-  tourismData.value = [scenicData, hotelData, restaurantData];
+  tourismData.value = {
+    scenic,
+    hotel,
+    restaurant,
+  };
 });
 </script>
 
@@ -124,9 +133,15 @@ onBeforeMount(async () => {
 
   <GlobalSubtitle class="bg-[#6E9292]" :title="`熱門景點`" />
   <div class="flex pt-[79px] justify-center">
-    <CardImage />
-    <CardImage class="mx-[35px]" />
-    <CardImage />
+    <CardImage
+      v-for="(scenic, idx) in tourismData.scenic"
+      class="card-image"
+      :key="idx"
+      :name="scenic.ScenicSpotName"
+      :location="scenic.Address"
+      :pic="scenic.Picture"
+      :preview="getImageUrl('preview/scenic_preview.jpg')"
+    />
   </div>
 
   <GlobalSubtitle class="bg-[#738677] mt-[90px]" :title="`熱門美食`" />
@@ -143,4 +158,11 @@ onBeforeMount(async () => {
   </div>
 </template>
 
-<style lang="postcss"></style>
+<style lang="postcss">
+.card-image {
+  background: url(../assets/images/preview/scenic_preview.jpg);
+}
+.card-image:nth-child(2) {
+  @apply mx-3;
+}
+</style>

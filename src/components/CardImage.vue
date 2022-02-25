@@ -1,14 +1,37 @@
 <script setup lang="ts">
-defineProps({
-  isShowOption: {
-    type: Boolean,
-    default: true,
-  },
+import { defineProps } from "vue";
+import type { commonInfo } from "../@types/apiResponse";
+
+interface Props {
+  isShowOption?: Boolean;
+  name: string;
+  location: string;
+  pic: commonInfo["Picture"];
+  preview: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  isShowOption: () => true,
+  name: "",
+  location: "",
+  pic: () => ({
+    PictureDescription1: "",
+  }),
+  preview: "",
 });
 </script>
 
 <template>
-  <div class="rounded-30px h-[420px] w-[368px] overflow-hidden relative">
+  <div
+    class="bg-cover rounded-30px h-[420px] w-[368px] overflow-hidden relative"
+  >
+    <img
+      :src="pic.PictureUrl1 || preview"
+      class="object-cover object-center h-[420px] w-[368px]"
+      :alt="pic.PictureDescription1 || name"
+      width="368"
+      height="420"
+    />
     <div v-if="isShowOption">
       <div
         class="
@@ -18,11 +41,11 @@ defineProps({
           h-40px
           top-18px
           left-18px
-          text-14px
-          text-[rgba(0,0,0,0.3)]
+          text-14px text-[rgba(0,0,0,0.3)]
           w-125px
           absolute
-          items-center justify-center
+          items-center
+          justify-center
         "
       >
         <img class="mx-4px w-16px" src="@/assets/svg/icon_visitor.svg" alt="" />
@@ -36,7 +59,7 @@ defineProps({
         alt=""
       />
     </div>
-    <div class="bg-[#0f0] h-[100%] mb-[8px] pt-354px w-[100%]">
+    <div class="h-[100%] pt-354px bottom-0 w-[100%] absolute">
       <div
         class="
           flex
@@ -49,7 +72,11 @@ defineProps({
           items-center
         "
       >
-        <div class="text-shadow-sm text-36px leading-[39.2px]">台北１０１</div>
+        <div
+          class="flex-1 text-shadow-sm text-36px leading-[39.2px] line-clamp-1"
+        >
+          {{ name }}
+        </div>
         <div v-if="isShowOption" class="flex item-center">
           <img
             class="mr-[4px]"
@@ -58,12 +85,12 @@ defineProps({
           />
           <span
             class="
-              text-base
-              text-16px leading-22px
+              text-base text-16px
+              leading-22px
               inline-block
               whitespace-nowrap
             "
-            >南投縣</span
+            >{{ location.slice(0, 3) }}</span
           >
         </div>
       </div>
