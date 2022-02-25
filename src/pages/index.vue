@@ -2,33 +2,26 @@
 import type { AxiosResponse } from "axios";
 import type { ScenicSpot, Hotel, Restaurant } from "../@types/apiResponse";
 
-import indexBanner from "../assets/images/bg_index.png";
-import cardFood from "../assets/images/card_food.png";
-import cardInspect from "../assets/images/card_inspect.png";
-import cardAccommodation from "../assets/images/card_accommodation.png";
-import cardTraffic from "../assets/images/card_traffic.png";
-
 import { ref, onBeforeMount, reactive } from "vue";
 import { $api } from "../service/api";
 import { select } from "../util/selectApiKey";
 import { getImageUrl } from "../util/common";
 
-const indexBannerImg = `background-image: url(${indexBanner});`;
 const cardMenu = [
   {
-    img: cardInspect,
+    img: getImageUrl("card_inspect.png"),
     title: "景點",
   },
   {
-    img: cardFood,
+    img: getImageUrl("card_food.png"),
     title: "美食",
   },
   {
-    img: cardAccommodation,
+    img: getImageUrl("card_accommodation.png"),
     title: "住宿",
   },
   {
-    img: cardTraffic,
+    img: getImageUrl("card_traffic.png"),
     title: "交通",
   },
 ];
@@ -78,7 +71,12 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <div class="bg-cover bg-no-repeat bg-bottom w-[100%]" :style="indexBannerImg">
+  <div
+    class="w-[100%]"
+    :style="`background: url(${getImageUrl(
+      'bg_index.png'
+    )}) no-repeat bottom/cover`"
+  >
     <img
       class="
         transform
@@ -112,8 +110,8 @@ onBeforeMount(async () => {
     <li
       v-for="card in cardMenu"
       :key="card.title"
-      :style="`background-image: url(${card.img});`"
-      class="bg-cover bg-no-repeat h-[390px] mx-[18.5px] w-[285px] relative"
+      :style="`background: url(${card.img}) no-repeat bottom/cover;`"
+      class="h-[390px] mx-[18.5px] w-[285px] relative"
     >
       <p
         class="
