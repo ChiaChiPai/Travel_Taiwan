@@ -167,7 +167,7 @@ onBeforeMount(async () => {
       :pic="scenic.Picture"
       :phone="scenic.Phone"
       :service="`服務項目：${scenic.ServiceInfo || ''}`"
-      :preview="getImageUrl('preview/restaurant_preview.jpg')"
+      :preview="getImageUrl('preview/hotel_preview.jpg')"
     />
   </div>
 </template>
