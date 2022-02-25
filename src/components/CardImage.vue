@@ -11,7 +11,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  isShowOption: () => true,
+  isShowOption: true,
   name: '',
   location: '',
   pic: () => ({
