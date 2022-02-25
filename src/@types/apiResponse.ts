@@ -1,49 +1,31 @@
-export interface ScenicSpot {
-  ScenicSpotName: string
+export interface commonInfo {
   Address: string
-  DescriptionDetail: string
-  OpenTime: string
   Phone: string
-  Picture?: {
+  OpenTime?: string
+  Picture: {
     PictureDescription1: string
-    PictureUrl1: string
+    PictureDescription2?: string
+    PictureDescription3?: string
+    PictureUrl1?: string
   },
   Position: {
     GeoHash: string
     PositionLat: number
     PositionLon: number
   },
+}
+
+export interface ScenicSpot extends commonInfo {
+  ScenicSpotName: string
+  DescriptionDetail: string
 }
 
 export interface Hotel {
   HotelName: string
-  Address: string
   Description: string
-  Phone: string
-  Picture?: {
-    PictureDescription1: string
-    PictureUrl1: string
-  },
-  Position: {
-    GeoHash: string
-    PositionLat: number
-    PositionLon: number
-  },
 }
 
 export interface Restaurant {
   RestaurantName: string
-  Address: string
   Description: string
-  OpenTime: string
-  Phone: string
-  Picture?: {
-    PictureDescription1: string
-    PictureUrl1: string
-  },
-  Position: {
-    GeoHash: string
-    PositionLat: number
-    PositionLon: number
-  },
 }
