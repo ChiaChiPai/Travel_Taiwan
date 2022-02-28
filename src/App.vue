@@ -1,6 +1,4 @@
-<script setup lang="ts">
-console.log('as')
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="mx-auto w-auto relative">
