@@ -1,13 +1,21 @@
 <script lang="ts" setup>
-import attractionBanner from '../assets/images/attraction_banner.jpg'
+import { ref } from 'vue'
+import { getImageUrl } from '../util/common'
 
-const attraction = `background-image: url(${attractionBanner});`
+defineEmits<{
+  (e: 'search', keyword: string): void
+}>()
+
+const keyword = ref('')
 </script>
 
 <template>
   <div
     class="bg-cover bg-no-repeat bg-bottom h-700px w-[100%] relative"
-    :style="attraction">
+    :style="`background: url(${getImageUrl(
+      'attraction_banner.jpg'
+    )}) no-repeat bottom/cover`"
+  >
     <img
       class="
         transform
@@ -19,11 +27,14 @@ const attraction = `background-image: url(${attractionBanner});`
         xl:w-[568px]
       "
       src="../assets/images/atrraction_banner_icon.png"
-      alt="" />
+      alt=""
+    />
     <div
-      class="flex transform bottom-[22%] left-[50%] -translate-x-1/2 absolute">
+      class="flex transform bottom-[22%] left-[50%] -translate-x-1/2 absolute"
+    >
       <label ref="input" class="mr-14px search-bar relative">
         <input
+          v-model="keyword"
           class="
             outline-none
             rounded-8px
@@ -31,12 +42,14 @@ const attraction = `background-image: url(${attractionBanner});`
             pr-13px
             pl-8px
             leading-23px
-            w-529px
+            w-550px
           "
           type="search"
-          placeholder="請輸入關鍵字" />
+          placeholder="請輸入關鍵字"
+          @keyup.enter="$emit('search', keyword)"
+        />
       </label>
-      <img src="@/assets/images/btn_search.png" alt="" />
+      <!-- <img src="@/assets/images/btn_search.png" alt="" /> -->
     </div>
   </div>
 </template>
