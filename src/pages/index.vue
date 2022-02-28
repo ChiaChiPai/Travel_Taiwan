@@ -172,13 +172,7 @@ onBeforeMount(async () => {
   </div>
 </template>
 
-<style lang="postcss">
-.card {
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-}
-.card:nth-child(2) {
-  @apply mx-9;
-}
+<style lang="postcss" scoped>
 .card-image {
   background: url(../assets/images/preview/scenic_preview.jpg);
 }
