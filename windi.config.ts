@@ -1,5 +1,6 @@
 import colors from "windicss/colors";
 import { defineConfig } from "windicss/helpers";
+import plugin from 'windicss/plugin'
 
 export default defineConfig({
   darkMode: false, // or 'media' or 'class'
@@ -1032,5 +1033,18 @@ export default defineConfig({
     wordBreak: ["responsive"],
     zIndex: ["responsive", "focus-within", "focus"],
   },
-  plugins: [require("windicss/plugin/line-clamp")],
+  plugins: [
+    require("windicss/plugin/line-clamp"),
+    plugin(({ addComponents }) => {
+      const card = {
+        '.card':{
+          boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)',
+          '&:nth-child(2)': {
+            margin: '0 36px'
+          }
+        },
+      }
+      addComponents(card)
+    }),
+  ],
 });
