@@ -1,11 +1,27 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+interface Props {
+  length: number
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  length: 1
+})
+
+const pages = computed(() => Math.floor(props.length / 6))
+</script>
+
 <template>
-  <ul class="flex pagination">
-    <li class="active">1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-  </ul>
+  <Pagination :page-length="20" />
+  <div class="flex items-center">
+    <svgIcon name="arrow-left" color="#f8f8f8" class="h-44px w-44px"></svgIcon>
+    <ul class="flex mx-2 pagination">
+      <li>...</li>
+      <li v-for="page in pages" :key="page">{{ page }}</li>
+      <li>...</li>
+    </ul>
+    <svgIcon name="arrow-right" class="h-44px w-44px"></svgIcon>
+  </div>
 </template>
 
 <style lang="postcss" scoped>

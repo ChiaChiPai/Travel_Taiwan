@@ -14,11 +14,15 @@ declare module 'vue' {
     CardWaterfall: typeof import('./src/components/CardWaterfall.vue')['default']
     FooterBar: typeof import('./src/components/FooterBar.vue')['default']
     GlobalSubtitle: typeof import('./src/components/GlobalSubtitle.vue')['default']
+    Hello: typeof import('./src/components/Hello.vue')['default']
+    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     ImgSrc: typeof import('./src/components/ImgSrc.vue')['default']
     IndexWeather: typeof import('./src/components/IndexWeather.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
+    Pagination: typeof import('./src/components/Pagination.vue')['default']
     PaginationGroup: typeof import('./src/components/PaginationGroup.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon.vue')['default']
+    Test: typeof import('./src/components/Test.vue')['default']
   }
 }
 

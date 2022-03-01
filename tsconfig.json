@@ -14,7 +14,8 @@
     },
     "types": [
       "vite-plugin-pages/client"
-    ]
+    ],
+    "jsx": "preserve"
   },
   "references": [
     {

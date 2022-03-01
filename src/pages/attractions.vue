@@ -23,7 +23,7 @@ onBeforeMount(async () => {
     isShowSearch.value = true
     const scenicSearchPromise = $api.scenic.fetch({
       params: {
-        $top: 10,
+        $top: 100,
         $select: select.scenic
       }
     })
@@ -98,7 +98,12 @@ const getSearchResult = (query: string) => {
         :preview="getImageUrl('preview/scenic_preview.jpg')"
       />
     </div>
-    <PaginationGroup class="mb-28px justify-center" />
+    <Pagination
+      v-if="Object.keys(searchResult).length > 0"
+      :page-length="searchResult.length"
+      :page-group-length="6"
+      class="mb-28px justify-center"
+    />
   </div>
   <div v-else>
     <GlobalSubtitle class="bg-[#6E9292]" :title="`熱門景點`" />
