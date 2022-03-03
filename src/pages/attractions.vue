@@ -14,11 +14,12 @@ let scenicData = ref({
   scenicTopic: {} as ScenicSpot[]
 })
 let searchResult = ref({} as ScenicSpot[])
+let currentPageData = ref({} as ScenicSpot[])
 const isShowSearch = ref(false)
 const keyword = ref('')
+const currentPage = ref(1)
 
 onBeforeMount(async () => {
-  console.log(router.currentRoute.value.query)
   if (Object.keys(router.currentRoute.value.query).length !== 0) {
     isShowSearch.value = true
     const scenicSearchPromise = $api.scenic.fetch({
@@ -32,6 +33,7 @@ onBeforeMount(async () => {
       ScenicSpot[]
     >
     searchResult.value = scenicSearch
+    currentPageData.value = searchResult.value.slice(0, 6)
   } else {
     const scenicHotPromise = $api.scenic.fetch({
       params: {
@@ -61,12 +63,22 @@ onBeforeMount(async () => {
 })
 
 const getSearchResult = (query: string) => {
+  keyword.value = query
   router.push({
     name: 'attractions',
     query: {
       q: query
     }
   })
+}
+const handlePage = (page: string) => {
+  console.log(page)
+  currentPage.value = parseInt(page)
+
+  currentPageData.value = searchResult.value.slice(
+    (currentPage.value - 1) * 6,
+    currentPage.value * 6
+  ) //1-6 6-12 12-18
 }
 </script>
 
@@ -89,7 +101,7 @@ const getSearchResult = (query: string) => {
       "
     >
       <CardImage
-        v-for="(scenic, idx) in searchResult"
+        v-for="(scenic, idx) in currentPageData"
         :key="idx"
         class="mb-9 card-image"
         :name="scenic.ScenicSpotName"
@@ -98,11 +110,12 @@ const getSearchResult = (query: string) => {
         :preview="getImageUrl('preview/scenic_preview.jpg')"
       />
     </div>
-    <Pagination
+    <PaginationGroup
       v-if="Object.keys(searchResult).length > 0"
       :page-length="searchResult.length"
-      :page-group-length="6"
+      :page-group-length="5"
       class="mb-28px justify-center"
+      @handle-page="handlePage"
     />
   </div>
   <div v-else>

@@ -15,7 +15,10 @@
     "types": [
       "vite-plugin-pages/client"
     ],
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "lib": [
+      "ESNEXT"
+    ]
   },
   "references": [
     {
