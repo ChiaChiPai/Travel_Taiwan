@@ -89,7 +89,14 @@ withDefaults(defineProps<Props>(), {
               inline-block
               whitespace-nowrap
             "
-            >{{ location.slice(0, 3) }}</span
+            >{{
+              location
+                ? location
+                    .match(/[^0-9]/gi)
+                    .join('')
+                    .slice(0, 3)
+                : ''
+            }}</span
           >
         </div>
       </div>
