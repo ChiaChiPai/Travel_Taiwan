@@ -17,8 +17,8 @@ export default defineComponent({
 
   setup(props, { emit }) {
     // Data
-    const totalPage = Math.floor(props.pageLength / 6) + 1 // 總頁數
     const currentPage = ref(1) // 目前頁數
+    const totalPage = Math.floor(props.pageLength / 6) + 1
 
     // computed
     const currentPageGroup = computed(() => {

@@ -9,6 +9,7 @@ import { getImageUrl } from '../util/common'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+
 let scenicData = ref({
   scenicHot: {} as ScenicSpot[],
   scenicTopic: {} as ScenicSpot[]
@@ -17,50 +18,61 @@ let searchResult = ref({} as ScenicSpot[])
 let currentPageData = ref({} as ScenicSpot[])
 const isShowSearch = ref(false)
 const keyword = ref('')
-const currentPage = ref(1)
+const titleRef = ref(null)
 
 onBeforeMount(async () => {
-  if (Object.keys(router.currentRoute.value.query).length !== 0) {
-    isShowSearch.value = true
-    const scenicSearchPromise = $api.scenic.fetch({
-      params: {
-        $top: 100,
-        $select: select.scenic
-      }
-    })
-
-    const { data: scenicSearch } = (await scenicSearchPromise) as AxiosResponse<
-      ScenicSpot[]
-    >
-    searchResult.value = scenicSearch
-    currentPageData.value = searchResult.value.slice(0, 6)
+  const urlQuery = router.currentRoute.value.query
+  if (Object.keys(urlQuery).length !== 0) {
+    ajaxSearchData(router.currentRoute.value.query.q as string)
+    keyword.value = urlQuery.q as string
   } else {
-    const scenicHotPromise = $api.scenic.fetch({
-      params: {
-        $skip: Math.floor(Math.random() * 1000),
-        $top: 3,
-        $select: select.scenic
-      }
-    })
-    const scenicTopicPromise = $api.scenic.fetch({
-      params: {
-        $skip: Math.floor(Math.random() * 1000),
-        $top: 3,
-        $select: select.scenic
-      }
-    })
-
-    const [{ data: scenicHot }, { data: scenicTopic }] = (await Promise.all([
-      scenicHotPromise,
-      scenicTopicPromise
-    ])) as [AxiosResponse<ScenicSpot[]>, AxiosResponse<ScenicSpot[]>]
-
-    scenicData.value = {
-      scenicHot,
-      scenicTopic
-    }
+    init()
   }
 })
+
+const init = async () => {
+  const scenicHotPromise = $api.scenic.fetch({
+    params: {
+      $skip: Math.floor(Math.random() * 1000),
+      $top: 3,
+      $select: select.scenic
+    }
+  })
+  const scenicTopicPromise = $api.scenic.fetch({
+    params: {
+      $skip: Math.floor(Math.random() * 1000),
+      $top: 3,
+      $select: select.scenic
+    }
+  })
+
+  const [{ data: scenicHot }, { data: scenicTopic }] = (await Promise.all([
+    scenicHotPromise,
+    scenicTopicPromise
+  ])) as [AxiosResponse<ScenicSpot[]>, AxiosResponse<ScenicSpot[]>]
+
+  scenicData.value = {
+    scenicHot,
+    scenicTopic
+  }
+}
+
+const ajaxSearchData = async (q: string) => {
+  isShowSearch.value = true
+  searchResult.value = []
+  const scenicSearchPromise = $api.scenic.fetch({
+    params: {
+      $select: select.scenic,
+      $filter: `contains(ScenicSpotName, '${q}') or contains(Address, '${q}')`
+    }
+  })
+
+  const { data: scenicSearch } = (await scenicSearchPromise) as AxiosResponse<
+    ScenicSpot[]
+  >
+  searchResult.value = scenicSearch
+  currentPageData.value = searchResult.value.slice(0, 6)
+}
 
 const getSearchResult = (query: string) => {
   keyword.value = query
@@ -70,24 +82,29 @@ const getSearchResult = (query: string) => {
       q: query
     }
   })
+  ajaxSearchData(query)
 }
-const handlePage = (page: string) => {
-  console.log(page)
-  currentPage.value = parseInt(page)
 
+const handlePage = (page: string) => {
   currentPageData.value = searchResult.value.slice(
-    (currentPage.value - 1) * 6,
-    currentPage.value * 6
-  ) //1-6 6-12 12-18
+    (parseInt(page) - 1) * 6,
+    parseInt(page) * 6
+  )
+
+  window.scrollTo({
+    top: (titleRef.value as HTMLElement | null)?.clientHeight ?? 700
+  })
 }
 </script>
 
 <template>
-  <AttractionBanner @search="getSearchResult" />
+  <div ref="titleRef">
+    <AttractionBanner @search="getSearchResult" />
+  </div>
   <div v-if="isShowSearch">
     <GlobalSubtitle
       class="bg-[#6E9292]"
-      :title="keyword"
+      :title="`關鍵字：${keyword}`"
       :is-show-more="false"
     />
     <div
