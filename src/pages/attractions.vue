@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { ScenicSpot } from '../@types/apiResponse'
 
-import { ref, onBeforeMount } from 'vue'
+import { ref, onMounted } from 'vue'
 import type { AxiosResponse } from 'axios'
 import { $api } from '../service/api'
 import { select } from '../util/selectApiKey'
-import { getImageUrl } from '../util/common'
+import { getImageUrl, getSearchQuery } from '../util/common'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -20,17 +20,22 @@ const isShowSearch = ref(false)
 const keyword = ref('')
 const titleRef = ref(null)
 
-onBeforeMount(async () => {
+onMounted(() => {
+  init()
+})
+
+const init = () => {
+  // 判斷是否 query 是否有 q 值
   const urlQuery = router.currentRoute.value.query
   if (Object.keys(urlQuery).length !== 0) {
     ajaxSearchData(router.currentRoute.value.query.q as string)
     keyword.value = urlQuery.q as string
   } else {
-    init()
+    ajaxIndexPage()
   }
-})
+}
 
-const init = async () => {
+const ajaxIndexPage = async () => {
   const scenicHotPromise = $api.scenic.fetch({
     params: {
       $skip: Math.floor(Math.random() * 1000),
@@ -59,6 +64,7 @@ const init = async () => {
 
 const ajaxSearchData = async (q: string) => {
   isShowSearch.value = true
+  keyword.value = q
   searchResult.value = []
   const scenicSearchPromise = $api.scenic.fetch({
     params: {
@@ -74,15 +80,9 @@ const ajaxSearchData = async (q: string) => {
   currentPageData.value = searchResult.value.slice(0, 6)
 }
 
-const getSearchResult = (query: string) => {
-  keyword.value = query
-  router.push({
-    name: 'attractions',
-    query: {
-      q: query
-    }
-  })
-  ajaxSearchData(query)
+const handleSearchResult = (keyword: string) => {
+  getSearchQuery(keyword, router)
+  ajaxSearchData(keyword)
 }
 
 const handlePage = (page: string) => {
@@ -99,7 +99,7 @@ const handlePage = (page: string) => {
 
 <template>
   <div ref="titleRef">
-    <AttractionBanner @search="getSearchResult" />
+    <AttractionBanner @search="handleSearchResult" />
   </div>
   <div v-if="isShowSearch">
     <GlobalSubtitle
